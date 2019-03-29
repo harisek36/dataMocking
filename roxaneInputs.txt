@@ -1,0 +1,11 @@
+All data files should be in .txt format.
+All data files should use pipe “|” decimators rather than comma.
+There should be blank lines in the file.
+Y c- Payroll date should be in the future (past payroll dates will be taken as adjustments to the system)
+y c -Contribution Source Codes should only be Employee Sources (A, B, C, E, G, H, I, K, Q, 2, 4) unless the Client is doing their own calculations in which case Employer Sources (D,F,P,T,V,W,X,1,5,6) can be used
+y c- Total Employee Contribution Source Amount per participant should not exceed their Per Pay compensation
+Y c - Original Date of Hire should be before or equal to Adjusted Date of Hire
+Y c - Employment Status Date should be before or equal to Original Date of Hire and/or Adjusted Date of Hire
+y - Per Pay Compensation is an Optional field that we use a lot, and should be included (Note: you can take the salary and divide it by the frequency to determine this value)
+N - Year to Date Type, Year to Date Base Compensation and Year to Date Total Compensation should be included as these are used by Compliance Limit Monitoring
+Y c - Employee Plan Status should be included for Eligibility
