@@ -121,3 +121,10 @@ COL_DO = '' # Automatic Deferral Increase Percentage Maximum
 
 COL_RANDOM = [0, 1, 2]
 
+
+# arr = [12,12,12,12,12,12,12,12]
+#
+#
+#
+#
+#

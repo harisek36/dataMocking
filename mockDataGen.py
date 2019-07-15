@@ -20,8 +20,10 @@ detectGender = gender.Detector()
 nameSet = set()
 addressSet = set()
 
-RECOURD_COUNT = 1000
+EMPLOYEE_COUNT = 10
+RECOURD_COUNT = 12 * EMPLOYEE_COUNT
 
+employeeIdList = [12] * EMPLOYEE_COUNT
 
 def getStreetAndApt(streetWithApt):
 
@@ -163,7 +165,7 @@ endDobYear = 1999
 contributionSum = 0
 recordcount = 0
 
-with open("mockData1.csv", "a") as fileone: 
+with open("mockData1updated.csv", "a") as fileone: 
     hdr = csv.writer(fileone, dialect='excel')
     header = [''] * 10
     header[0] = 'SPARKH'
@@ -179,7 +181,7 @@ with open("mockData1.csv", "a") as fileone:
  
     hdr.writerow(header)
 
-with open("mockData1.csv", "a") as fp: 
+with open("mockData1updated.csv", "a") as fp: 
     wr = csv.writer(fp, dialect='excel')
 
     for record in range(RECOURD_COUNT):
@@ -202,11 +204,23 @@ with open("mockData1.csv", "a") as fp:
         recordValue[9] = COL_J[0] #j ' ' ----- [0] 001 = 403(b)(1) 
         recordValue[10] = COL_K[3] #k '26' ------ [3] 12 monthly
 
-    
-        recordValue[11] =  ssn_seed #l
-        recordValue[12] =  ssn_seed #m
+        # ssn_empId = -1
+        # ssn_empIdIndex = -1
+        ssn_empIdIndex = random.randrange(EMPLOYEE_COUNT)
+
+        while (employeeIdList[ssn_empIdIndex] <= 0):
+            ssn_empIdIndex = random.choice(employeeIdList)
+            if(employeeIdList[ssn_empIdIndex] > 0):
+                ssn_empId = ssn_empIdIndex
+                employeeIdList[ssn_empIdIndex] = employeeIdList[ssn_empIdIndex] - 1
+                break
+            
         
-        ssn_seed = ssn_seed + 1 
+
+        recordValue[11] =  ssn_empIdIndex #l
+        recordValue[12] =  ssn_empIdIndex #m
+        
+        # ssn_seed = ssn_seed + 1 
 
         initial, firstName, lastName, street, apt, city, state, zipcode, email = personalDetails()
         
@@ -303,7 +317,7 @@ with open("mockData1.csv", "a") as fp:
 
 # Trailer row
 
-with open("mockData1.csv", "a") as fp: 
+with open("mockData1updated.csv", "a") as fp: 
     wr = csv.writer(fp, dialect='excel')
     trailer= [None] * 5
     trailer[0] = 'SPARKTR'
